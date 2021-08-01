@@ -7,7 +7,6 @@ for i in n[:-1]:
     l.append(int(i))
 
 l = sorted(l)
-print(l)
 l.reverse()
 
 for i in range(len(l)):
