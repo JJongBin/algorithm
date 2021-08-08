@@ -65,6 +65,33 @@ print(tt)
 ############################
 
 
+def check(x): 
+    for i in range(x): 
+        if row[x] == row[i] or abs(row[x] - row[i]) == x - i:
+            return False 
+    return True
 
+
+def queen(x):
+
+    if x == n:
+        result.append(1)
+    else:
+    
+        for i in range(n): 
+            row[x] = i
+            if check(x):
+                queen(x+1)
+
+
+n = int(sys.stdin.readline())
+
+row = [0 for i in range(n)]     # 행별 퀸 위치
+result = []
+queen(0)    # 첫번째 행부터 시작
+
+print(len(result))
+
+# 시간초과
     
 
