@@ -16,6 +16,7 @@ for i in target:
     if floor == 0:
         floor = i[0]
         num -= 1
+        
     if num >= 10:
         result.append('{}{}'.format(floor, num))
 
