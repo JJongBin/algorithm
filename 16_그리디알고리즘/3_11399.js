@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { abort } = require("process");
 const filePath = process.platform === 'linux'? "/dev/stdin" : "./3_11399.txt";
 
 let input = fs.readFileSync(filePath).toString().trim().split("\n");
