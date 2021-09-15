@@ -103,7 +103,6 @@ class Deque {
             return this.tail.data;
         }
     }
-
 }
 
 const deque = new Deque()
