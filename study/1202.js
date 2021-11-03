@@ -10,10 +10,6 @@ let answer = 0;
 let back = input.slice(n+1, n+k+1).map(item => +item).sort((a, b) => a - b);
 input = input.slice(1, n+1).map(item => item.split(" ").map(item2 => +item2)).sort((a, b) => a[0] - b[0]);
 
-// console.log(n, k)
-// console.log(back)
-// console.log(input)
-
 class MaxHeap{
     constructor() {
         this.heap = [];
@@ -82,26 +78,32 @@ class MaxHeap{
     }
 }
 
-
+// maxheap을 사용
 const heap = new MaxHeap();
+
+
+// 보석들의 무게를 위한 index
 let w = 0;
+// 가방의 개수만큼 반복
 for(let i = 0; i < back.length; i++){
+    // w의 값이 input보다 큰것을 방지
     if(w < input.length){
+        // 만약 현재 가방의 무게가 무게순으로 정렬된 보석배열의 무게보다 같거나 작으면
         while(input[w][0] <= back[i]){
-            // console.log(input[w][1])
+            // maxheap에 가치를 넣어줌 -> heap에는 가방의 무게보다 가벼운 보석들의 가치만 존재
             heap.insert(input[w][1]);
+            // 다음 보석으로 넘어가기 위해
             w++;
+            // 만약 증가된 w가 input의 길이보다 길어서 out of range를 방지
             if(w >= input.length) {
-                // console.log(w)
-                break};
+                break
+            };
         }
     }
     
-    // console.log(back[i], heap)
+    // 만약 가방의 무게제한보다 보석의 무게가 크다면 넣을 수 없음(heap에서 나온 값이 없음 - NaN)
     let sum = parseInt(heap.get());
     answer += isNaN(sum) ? 0 : sum;
-    // answer += heap.get();
 }
-
 console.log(answer);
 
