@@ -92,7 +92,7 @@ for(let i = 1; i < time.length; i++){
     if(heap.check() > time[i][0]){
         heap.insert(time[i][1]);
     
-        //
+    // 가장 빨리 끝나는 회의의 끝나는 시각이 더 작으면 해당 회의실에서 회의 할 수 있음
     }else{
         heap.get();
         heap.insert(time[i][1]);
