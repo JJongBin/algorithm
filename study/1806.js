@@ -12,7 +12,6 @@ const solve = (n, s, nums) => {
     let answer = 100001;
     let left = 0;
     let temp = 0;
-    // console.log(n, s, nums)
 
     for(let right = 0; right < n; right++){
         temp += nums[right];
