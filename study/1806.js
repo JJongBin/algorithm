@@ -10,12 +10,18 @@ const nums = input[1].split(" ").map(item => +item);
 
 const solve = (n, s, nums) => {
     let answer = 100001;
+
+    // 투포인트
     let left = 0;
     let temp = 0;
 
+    
     for(let right = 0; right < n; right++){
+        // 합에 더해줌
         temp += nums[right];
+        // 합이 s 이상이 될때까지
         while(temp >= s){
+            // 길이가 작은것을 저장
             answer = Math.min(right - left +1, answer);
             temp -= nums[left];
             left++;
