@@ -7,7 +7,7 @@ const n = parseInt(input.shift());
 
 input = input[0].split(" ").map(item => +item);
 
-// map 생성(hash)
+// map 생성(hash)해서 데이터를 넣어줌
 const hash = new Map();
 for(let i = 0; i < n; i++){
     hash.set(input[i], (hash.get(input[i]) || 0) + 1);
