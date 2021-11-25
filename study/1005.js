@@ -19,10 +19,11 @@ const solve = (n, k, arr, graph, checkDp, indegrees, target) => {
   while (queue.length) {
     const temp = queue.shift();
     let tempDp = 0;
-    //dp
+    // dp를 이용해서 값을 계산
     for (const dp of checkDp[temp]) {
       tempDp = Math.max(tempDp, arr[dp - 1]);
     }
+    // 결과 저장
     arr[temp - 1] = tempDp + arr[temp - 1];
     for (const next of graph[temp]) {
       indegrees[next]--;
