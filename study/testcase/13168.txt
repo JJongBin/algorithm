@@ -1,0 +1,6 @@
+14 40000
+Boseong Busan Changwon Cheonan Chuncheon Daegu Daejeon Gwangju Jeonju Jinju Masan Seoul Suncheon Yeosu
+2
+Seoul Busan
+1
+ITX-Saemaeul Seoul Busan 20000
