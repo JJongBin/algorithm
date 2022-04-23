@@ -3,14 +3,9 @@ function solution(id_list, report, k) {
 
   const userNum = id_list.length;
   const answer = new Array(userNum).fill(0);
+
   const userIdx = {};
   for (let i = 0; i < userNum; i++) userIdx[id_list[i]] = i;
-
-  // console.log(id_list);
-  // console.log(report);
-  // console.log(k);
-
-  // console.log(userIdx);
 
   const hash = new Map();
   for (const [user, target] of report) hash.set(target, (hash.get(target) || new Set()).add(user));
