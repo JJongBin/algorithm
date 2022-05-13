@@ -1,0 +1,62 @@
+function solution(m, n, board) {
+  var answer = 0;
+  const boardArr = board.map(str => str.split(''));
+
+  const sorting = arr => {
+    for (let i = m - 1; i > 0; i--) {
+      for (let j = 0; j < n; j++) {
+        if (boardArr[i][j]) continue;
+        for (let k = i - 1; k >= 0; k--) {
+          if (boardArr[k][j]) {
+            boardArr[i][j] = boardArr[k][j];
+            boardArr[k][j] = 0;
+            break;
+          }
+        }
+      }
+    }
+  };
+
+  const popBlock = arr => {
+    let cnt = 0;
+    for (const [x, y] of arr) {
+      boardArr[x][y] = 0;
+      cnt++;
+    }
+    return cnt;
+  };
+
+  const findBlock = () => {
+    const check = new Set();
+    for (let i = 0; i < m - 1; i++) {
+      for (let j = 0; j < n - 1; j++) {
+        if (!boardArr[i][j]) continue;
+        const block = boardArr[i][j];
+        if (block === boardArr[i + 1][j + 1] && block === boardArr[i + 1][j] && block === boardArr[i][j + 1]) {
+          check.add(`${i + 1} ${j}`);
+          check.add(`${i + 1} ${j + 1}`);
+          check.add(`${i} ${j}`);
+          check.add(`${i} ${j + 1}`);
+        }
+      }
+    }
+    const arr = [...check.keys()].map(item => item.split(' ').map(Number));
+    const cnt = popBlock(arr);
+    answer += cnt;
+    sorting(arr);
+    return cnt;
+  };
+
+  while (true) {
+    const cnt = findBlock();
+    if (!cnt) break;
+  }
+
+  return answer;
+}
+// 라이언(R), 무지(M), 어피치(A), 프로도(F), 네오(N), 튜브(T), 제이지(J), 콘(C)
+console.log(solution(4, 5, ['AAADE', 'AAABF', 'BCBDE', 'CCBBF']));
+console.log(solution(4, 5, ['CCBDE', 'AAADE', 'AAABF', 'CCBBF']));
+console.log(solution(6, 6, ['TTTANT', 'RRFACC', 'RRRFCC', 'TRRRAA', 'TTMMMF', 'TMMTTJ']));
+console.log(solution(4, 8, ['AAAAAAAA', 'BBBBBBZZ', 'CCCCZZZZ', 'DDDDZZDD']));
+console.log(solution(5, 3, ['CCC', 'CAC', 'CZC', 'CCC', 'CCC']));
