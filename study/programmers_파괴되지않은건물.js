@@ -2,22 +2,15 @@ function solution(board, skill) {
   var answer = 0;
 
   const calcArr = [...Array(board.length + 1)].map(_ => new Array(board[0].length + 1).fill(0));
-  const doSkill = s => {
-    const [type, x1, y1, x2, y2, degree] = s;
-    if (type === 1) {
-      calcArr[x1][y1] -= degree;
-      calcArr[x2 + 1][y2 + 1] -= degree;
-      calcArr[x1][y2 + 1] += degree;
-      calcArr[x2 + 1][y1] += degree;
-    } else {
-      calcArr[x1][y1] += degree;
-      calcArr[x2 + 1][y2 + 1] += degree;
-      calcArr[x1][y2 + 1] -= degree;
-      calcArr[x2 + 1][y1] -= degree;
-    }
+  const doSkill = (type, x1, y1, x2, y2, degree) => {
+    if (type === 2) degree = -degree;
+    calcArr[x1][y1] -= degree;
+    calcArr[x2 + 1][y2 + 1] -= degree;
+    calcArr[x1][y2 + 1] += degree;
+    calcArr[x2 + 1][y1] += degree;
   };
 
-  for (const s of skill) doSkill(s);
+  for (const s of skill) doSkill(...s);
 
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[0].length - 1; j++) calcArr[i][j + 1] += calcArr[i][j];
