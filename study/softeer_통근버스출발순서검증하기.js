@@ -16,20 +16,26 @@ const rl = readline.createInterface({
 const input = [];
 
 const solve = () => {
-  const disable = [];
+  let cnt = 0;
   const arr = input.pop().split(' ').map(Number);
   const n = +input.pop();
 
+  const check = [...Array(n)].map(_ => new Array(n + 1).fill(0));
+
   for (let i = 0; i < n - 2; i++) {
-    for (let j = i + 1; j < n - 1; j++) {
-      if (arr[i] >= arr[j]) continue;
-      for (let k = j + 1; k < n; k++) {
-        if (arr[i] > arr[k]) disable.push(`${i} ${j} ${k}`);
-      }
+    for (let k = n - 1; k >= 0; k--) {
+      if (arr[i] > arr[k]) check[i][k] = check[i][k + 1] + 1;
+      else check[i][k] = check[i][k + 1];
     }
   }
 
-  console.log(disable.length);
+  for (let i = 0; i < n - 2; i++) {
+    for (let j = i + 1; j < n - 1; j++) {
+      if (arr[i] < arr[j]) cnt += check[i][j];
+    }
+  }
+
+  console.log(cnt);
 };
 
 rl.on('line', line => {
