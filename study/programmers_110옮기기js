@@ -1,0 +1,44 @@
+function solution(s) {
+  var answer = [];
+
+  for (let str of s) {
+    if (str.length <= 3) {
+      answer.push(str);
+      continue;
+    }
+
+    const stack = [];
+    let cnt = 0;
+    for (const n of str) {
+      let flag = false;
+      if (n === '0') {
+        if (stack.length >= 2) {
+          if (stack[stack.length - 1] === '1' && stack[stack.length - 2] === '1') {
+            stack.pop();
+            stack.pop();
+            cnt += 1;
+            flag = true;
+          }
+        }
+      }
+
+      if (!flag) stack.push(n);
+    }
+
+    let subStr = '';
+    for (let i = stack.length - 1; i >= 0; i--) {
+      if (stack[i] === '0' && cnt) {
+        subStr = '110'.repeat(cnt) + subStr;
+        cnt = 0;
+      }
+      subStr = stack[i] + subStr;
+    }
+    if (cnt) subStr = '110'.repeat(cnt) + subStr;
+
+    answer.push(subStr);
+  }
+
+  return answer;
+}
+
+console.log(solution(['1110', '100111100', '0111111010']));
