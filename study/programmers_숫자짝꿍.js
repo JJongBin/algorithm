@@ -13,7 +13,7 @@ function solution(X, Y) {
     answer += k.repeat(Math.min(v, hash2.get(k)));
   }
 
-  return answer ? String(+answer) : '-1';
+  return answer ? (answer[0] === '0' ? '0' : answer) : '-1';
 }
 
 console.log(solution('12321', '42531'));
